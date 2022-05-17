@@ -40,8 +40,6 @@ services:
     depends_on:
       - db
     image: wordpress:latest
-    ports:
-      - '80:80'
     restart: always
     volumes: ['wp_data:/var/www/html']
     environment:
@@ -49,15 +47,13 @@ services:
       WORDPRESS_DB_USER: wordpress
       WORDPRESS_DB_PASSWORD: wordpress
       WORDPRESS_CONFIG_EXTRA: define('WP_ALLOW_MULTISITE', true );
-    hostname: vidaswordpress.com.local
+    hostname: dockerwp
     labels:
-      com.theimpossiblecode.expose.domain: "vidaswordpress.com.local" 
+      com.theimpossiblecode.expose.domain: "vidaswordpress.com" 
       com.theimpossiblecode.expose.domainIsHost: "true"
-      com.theimpossiblecode.expose.subdomainHosts: "de at it"
+      com.theimpossiblecode.expose.subdomainHosts: "support shop jobs"
     networks:
-      wpsite:
-          aliases:
-            - vidaswordpress.com.local
+      - wpsite  
 
 # Pure FTP
   ftpd_server:
@@ -66,7 +62,7 @@ services:
     ports:
       - "21:21"
       - "30000-30009:30000-30009"
-    volumes: # remember to replace /folder_on_disk/ with the path to where you want to store the files on the host machine
+    volumes: 
       - "db_data:/var/lib/mysql"
       - "wp_data:/var/www/html"
     environment:
