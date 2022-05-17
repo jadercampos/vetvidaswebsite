@@ -57,7 +57,7 @@ services:
     networks:
       wpsite:
           aliases:
-            - modernwordpress.com.local
+            - vidaswordpress.com.local
 
 # Pure FTP
   ftpd_server:
