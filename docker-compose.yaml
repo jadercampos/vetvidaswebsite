@@ -35,7 +35,7 @@ services:
     networks:
       - wpsite     
 
-  # Wordpress
+  # Wordpress-
   wordpress:
     container_name: vidas_wordpress
     depends_on:
